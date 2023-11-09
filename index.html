@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpinejs Datatable</title>
+    <link rel="stylesheet" href="./dist/app.css">
+    <script src="./app.js" defer type="module"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script>
+        let items = [];
+        fetch('./data.json')
+            .then(response => response.json())
+            .then(data => items = data)
+    </script>
+</head>
+
+<body class="max-w-screen-2xl py-10 mx-auto">
+    <div class="flow-root" x-data="dataTable(items)">
+        <div class="flex items-center justify-end gap-4">
+            <div>
+                <select name="perPage" id="perPage"
+                    class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    x-on:change="setPerPage($event.target.value)">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                </select>
+            </div>
+            <div>
+                <input type="text"
+                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    placeholder="Search..." x-model="search" @input.debounce="filteredData">
+            </div>
+        </div>
+        <div class="overflow-x-auto mt-6 rounded-md bg-white shadow-md">
+            <div class="inline-block min-w-full align-middle">
+                <table class="min-w-full divide-y divide-gray-300 border border-gray-100">
+                    <thead>
+                        <tr>
+                            <template x-for="column in columns" :key="column">
+                                <th scope="col" class="p-4 text-left text-sm font-semibold text-gray-800">
+                                    <a class="group inline-flex items-center gap-4" x-text="column"
+                                        @click="sort(column)">
+                                    </a>
+                                </th>
+                            </template>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 bg-white">
+                        <template x-for="(row, index) in filteredData" :key="index">
+                            <tr :class="index % 2 ? 'bg-white' : 'bg-gray-100'">
+                                <template x-for="column in columns" :key="column + index">
+                                    <td class="p-4 text-sm font-medium text-gray-700" x-text="row[column]"></td>
+                                </template>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="flex items-center justify-between border-t border-gray-200 py-3">
+            <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+                <div>
+                    <p class="text-sm text-gray-700">
+                        Showing
+                        <span class="font-medium" x-text="pagination.from+1"></span>
+                        to
+                        <span class="font-medium" x-text="pagination.to"></span>
+                        of
+                        <span class="font-medium" x-text="pagination.total"></span>
+                        results
+                    </p>
+                </div>
+                <div>
+                    <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+                        <a @click="setPage(pagination.current - 1)"
+                            class="cursor-pointer relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
+                            <span class="sr-only">Previous</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <template x-for="page in pagination.lastPage" :key="page">
+                            <a @click="setPage(page)"
+                                class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-100 focus:z-20 focus:outline-offset-0 cursor-pointer"
+                                :class="page === pagination.current && 'bg-indigo-500 text-white hover:bg-indigo-600'"
+                                x-text="page"></a>
+                        </template>
+                        <a class="cursor-pointer relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+                            @click="setPage(pagination.current + 1)">
+                            <span class="sr-only">Next</span>
+                            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

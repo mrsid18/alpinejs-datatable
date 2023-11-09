@@ -1,0 +1,26 @@
+{
+  "name": "alpinejs-datatable",
+  "version": "1.0.0",
+  "description": "Datatable using Alpinejs and TailwindCSS",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrsid18/alpinejs-datatable.git"
+  },
+  "keywords": [
+    "alpinejs",
+    "tailwindcss"
+  ],
+  "author": "Siddharth Mehta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrsid18/alpinejs-datatable/issues"
+  },
+  "homepage": "https://github.com/mrsid18/alpinejs-datatable#readme",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.6"
+  }
+}

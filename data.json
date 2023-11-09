@@ -1,0 +1,72 @@
+[
+  {
+    "name": "John Doe",
+    "email": "johndo@gmail.com",
+    "phone": "1234567890",
+    "company": "ABC Corp.",
+    "city": "New York",
+    "state": "New York",
+    "country": "USA",
+    "zip": "10001"
+  },
+  {
+    "name": "Alice Smith",
+    "email": "alicesmith@gmail.com",
+    "phone": "9876543210",
+    "company": "XYZ Ltd.",
+    "city": "San Francisco",
+    "state": "California",
+    "country": "USA",
+    "zip": "94105"
+  },
+  {
+    "name": "Bob Johnson",
+    "email": "bjohnson@gmail.com",
+    "phone": "5551234567",
+    "company": "DEF Inc.",
+    "city": "Los Angeles",
+    "state": "California",
+    "country": "USA",
+    "zip": "90001"
+  },
+  {
+    "name": "Bob Johnson",
+    "email": "bjohnson@gmail.com",
+    "phone": "5551234567",
+    "company": "DEF Inc.",
+    "city": "Los Angeles",
+    "state": "California",
+    "country": "USA",
+    "zip": "90001"
+  },
+  {
+    "name": "Eva Rodriguez",
+    "email": "evarod@gmail.com",
+    "phone": "3335557777",
+    "company": "GHI Corporation",
+    "city": "Miami",
+    "state": "Florida",
+    "country": "USA",
+    "zip": "33101"
+  },
+  {
+    "name": "Charlie Brown",
+    "email": "cbrown@gmail.com",
+    "phone": "1112223333",
+    "company": "JKL Enterprises",
+    "city": "Chicago",
+    "state": "Illinois",
+    "country": "USA",
+    "zip": "60601"
+  },
+  {
+    "name": "Grace Davis",
+    "email": "gracedavis@gmail.com",
+    "phone": "7778889999",
+    "company": "MNO Solutions",
+    "city": "Seattle",
+    "state": "Washington",
+    "country": "USA",
+    "zip": "98101"
+  }
+]
